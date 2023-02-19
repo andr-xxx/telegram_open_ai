@@ -11,7 +11,7 @@ export const initTGBot = () => {
     bot.on('message', async (msg) => {
         const {chat: {id}, text, from} = msg
 
-        logger.info(`Message from ${from?.first_name || ''} ${from?.username || ''}:`, text)
+        logger.info(`Message from ${from?.first_name || ''} ${from?.username || ''}: ${text}`)
 
         if (text === '/start') {
             return bot.sendMessage(id, 'Hello, nice to see you :)')
