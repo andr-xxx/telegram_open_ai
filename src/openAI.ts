@@ -1,4 +1,5 @@
 import {Configuration, OpenAIApi, Model} from 'openai'
+import {logger} from './logger';
 
 
 interface IOpenAIOptions {
@@ -26,7 +27,7 @@ export class OpenAI {
             const {data} = await this.openAi.listModels()
             this.modelsList = data.data
         } catch (e) {
-            console.log(e)
+            logger.error(e)
         }
     }
 
