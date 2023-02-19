@@ -36,7 +36,6 @@ export class OpenAI {
                 model: this.DEFAULT_MODEL,
                 prompt,
                 max_tokens: this.TOKEN_LENGTH,
-                top_p: 0.1,
             })
 
             if (data.choices && data.choices.length) {
@@ -45,7 +44,9 @@ export class OpenAI {
 
             return 'Cant find answer to your question'
         } catch (e) {
-            return 'Something went wrong. Please try again'
+            // @ts-ignore
+            const message = e?.response?.data?.error?.message
+            return message || 'Something went wrong. Please try again'
         }
     }
 }
